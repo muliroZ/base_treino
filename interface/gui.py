@@ -37,3 +37,14 @@ class UI:
                 for s in sessoes:
                     print(f"{s}\n")
                 print("=" * 50)
+
+            case 3:
+                sessao_id = int(input("insira o id: "))
+                sessao = self.services.get(sessao_id)
+
+                print("=" * 50 + "\nSessão:\n" + "=" * 50)
+                if sessao is None:
+                    print("Sem sessões com esse ID")
+                else:
+                    print(sessao)
+                print("=" * 50)

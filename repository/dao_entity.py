@@ -38,11 +38,21 @@ class DAOEntity:
             return registros
 
         except Exception:
+            self.conn.rollback()
             raise
 
-    def find_by_id(self, task_id):
+    def find_by_id(self, sessao_id):
         # Consultar pelo ID
-        pass
+        try:
+            cursor = self.conn.cursor()
+
+            cursor.execute(f"SELECT * FROM sessao WHERE sessao_id = {sessao_id}")
+            sessao = cursor.fetchone()
+
+            return sessao
+        except Exception:
+            self.conn.rollback()
+            raise
 
     def update(self, task):
         # Atualizar

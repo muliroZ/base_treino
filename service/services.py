@@ -32,8 +32,14 @@ class Services:
 
         return sessoes
 
-    def get(self, task_id):
-        pass
+    def get(self, sessao_id: int):
+        if sessao_id is None or sessao_id <= 0 or not isinstance(sessao_id, int):
+            raise Exception("id invalido")
+
+        s = self.repository.find_by_id(sessao_id)
+        sessao = Entity(s[0], s[1], s[2], s[3])
+
+        return sessao
 
     def update(self, task_id, title, description):
         pass
