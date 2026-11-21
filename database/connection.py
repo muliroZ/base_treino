@@ -2,4 +2,4 @@ import os
 import sqlite3
 
 def get_connection():
-    pass
+    return sqlite3.connect("./database/sessao.db")
