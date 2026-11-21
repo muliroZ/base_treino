@@ -16,9 +16,10 @@ class UI:
         3. buscar sessao (por id)
         4. atualizar sessao
         5. excluir sessao
+        6. alterar andamento
         """)
 
-        opc = int(input("escolha (1-5): "))
+        opc = int(input("escolha (1-6): "))
         match opc:
             case 1:
                 nome = input("insira o nome: ")
@@ -71,3 +72,14 @@ class UI:
                     print(self.services.delete(sessao_id))
                 else:
                     print("operacao cancelada.")
+
+            case 6:
+                sessao_id = int(input("insira o id da sessao: "))
+                opc = input("para abrir a sessao, digite 'S', para fechar, digite 'n' (S/n): ").lower()
+
+                if opc == "n":
+                    resultado = self.services.alterar_andamento(sessao_id, True)
+                    print(resultado)
+                else:
+                    resultado = self.services.alterar_andamento(sessao_id, False)
+                    print(resultado)

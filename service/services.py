@@ -60,3 +60,13 @@ class Services:
             return "excluido com sucesso"
         except Exception:
             return "erro ao exluir"
+
+    def alterar_andamento(self, sessao_id, fechar=False):
+        if self.repository.find_by_id(sessao_id) is None:
+            return "sessao nao existe"
+
+        try:
+            self.repository.alterar_andamento(sessao_id, fechar)
+            return f"alterado com sucesso => sessao {sessao_id} {"em andamento" if not fechar else "fechada"}"
+        except Exception:
+            return "erro na operacao"

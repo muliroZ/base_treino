@@ -89,3 +89,18 @@ class DAOEntity:
         except Exception:
             self.conn.rollback()
             raise
+
+    def alterar_andamento(self, sessao_id, fechar=False):
+        try:
+            cursor = self.conn.cursor()
+
+            cursor.execute(f"""
+                UPDATE OR ROLLBACK sessao
+                SET em_andamento = {0 if fechar else 1}
+                WHERE sessao_id = {sessao_id};
+            """)
+
+            self.conn.commit()
+        except Exception:
+            self.conn.rollback()
+            raise
