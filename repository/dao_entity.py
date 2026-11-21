@@ -54,9 +54,29 @@ class DAOEntity:
             self.conn.rollback()
             raise
 
-    def update(self, task):
+    def update(self, sessao: Entity):
         # Atualizar
-        pass
+        try:
+            cursor = self.conn.cursor()
+
+            cursor.execute(f"SELECT * FROM sessao WHERE sessao_id = {sessao.id}")
+            sessao_antiga = cursor.fetchone()
+
+            if sessao_antiga is None:
+                print("A sessao nao existe")
+                return False
+
+            cursor.execute(f"""
+                UPDATE OR ROLLBACK sessao
+                SET nome = '{sessao.nome}', capacidade = {sessao.capacidade}
+                WHERE sessao_id = {sessao.id}
+            """)
+
+            self.conn.commit()
+            return True
+        except Exception:
+            self.conn.rollback()
+            raise
 
     def delete(self, task_id):
         # Excluir

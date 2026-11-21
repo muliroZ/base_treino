@@ -48,3 +48,17 @@ class UI:
                 else:
                     print(sessao)
                 print("=" * 50)
+
+            case 4:
+                sessao_id = int(input("insira o id da sessao: "))
+
+                nome = input("insira o novo nome (enter para pular): ")
+                cap = input("insira a nova capacidade (enter para pular): ")
+
+                try:
+                    if self.services.update(sessao_id, nome, int(cap) if cap != "" else None):
+                        print("atualizado com sucesso")
+                    else:
+                        print("sessao nao existe")
+                except Exception:
+                    print("nao atualizado")

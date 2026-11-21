@@ -41,8 +41,15 @@ class Services:
 
         return sessao
 
-    def update(self, task_id, title, description):
-        pass
+    def update(self, sessao_id, nome: str, capacidade: int):
+        if nome.strip() == "" or nome is None:
+            raise Exception("nome invalido")
+
+        if capacidade <= 0 and capacidade is not None:
+            raise Exception("capacidade invalida")
+
+        sessao = Entity(sessao_id, nome, capacidade, None)
+        return self.repository.update(sessao)
 
     def delete(self, task_id):
         pass
