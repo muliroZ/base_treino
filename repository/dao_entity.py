@@ -78,6 +78,14 @@ class DAOEntity:
             self.conn.rollback()
             raise
 
-    def delete(self, task_id):
+    def delete(self, sessao_id):
         # Excluir
-        pass
+        try:
+            cursor = self.conn.cursor()
+
+            cursor.execute(f"DELETE FROM sessao WHERE sessao_id = {sessao_id}")
+            self.conn.commit()
+
+        except Exception:
+            self.conn.rollback()
+            raise

@@ -62,3 +62,12 @@ class UI:
                         print("sessao nao existe")
                 except Exception:
                     print("nao atualizado")
+
+            case 5:
+                sessao_id = int(input("insira o id da sessao: "))
+
+                confirmacao = True if input("confirma? (s/N): ").lower() == "s" else False
+                if confirmacao:
+                    print(self.services.delete(sessao_id))
+                else:
+                    print("operacao cancelada.")

@@ -51,5 +51,12 @@ class Services:
         sessao = Entity(sessao_id, nome, capacidade, None)
         return self.repository.update(sessao)
 
-    def delete(self, task_id):
-        pass
+    def delete(self, sessao_id):
+        if self.repository.find_by_id(sessao_id) is None:
+            return "sessao nao existe"
+
+        try:
+            self.repository.delete(sessao_id)
+            return "excluido com sucesso"
+        except Exception:
+            return "erro ao exluir"
