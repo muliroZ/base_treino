@@ -24,7 +24,13 @@ class Services:
             raise
 
     def list(self):
-        pass
+        registros: list = self.repository.find_all()
+
+        sessoes: list[Entity] = []
+        for s in map(lambda r: Entity(r[0], r[1], r[2], r[3]), registros):
+            sessoes.append(s)
+
+        return sessoes
 
     def get(self, task_id):
         pass

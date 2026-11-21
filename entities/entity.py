@@ -4,3 +4,6 @@ class Entity:
         self.nome = nome
         self.capacidade = capacidade
         self.em_andamento = em_andamento
+
+    def __repr__(self) -> str:
+        return f"Id: {self.id}\nNome: {self.nome}\nCapacidade: {self.capacidade}\nEm andamento?: {'Sim' if self.em_andamento else 'Não'}"

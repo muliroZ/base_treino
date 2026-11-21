@@ -29,7 +29,16 @@ class DAOEntity:
 
     def find_all(self):
         # Consultar todas as entidades
-        pass
+        try:
+            cursor = self.conn.cursor()
+
+            cursor.execute("SELECT * FROM sessao")
+            registros = cursor.fetchall()
+
+            return registros
+
+        except Exception:
+            raise
 
     def find_by_id(self, task_id):
         # Consultar pelo ID

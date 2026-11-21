@@ -25,3 +25,15 @@ class UI:
                 cap = int(input("insira a capacidade: "))
 
                 self.services.create(nome, cap)
+
+            case 2:
+                sessoes = self.services.list()
+
+                print("=" * 50 + "\nSessoes:\n" + "=" * 50)
+                if len(sessoes) == 0:
+                    print("Sem sessões cadastradas")
+                    return
+
+                for s in sessoes:
+                    print(f"{s}\n")
+                print("=" * 50)
